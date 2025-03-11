@@ -1,0 +1,54 @@
+.contact-section {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 40px 20px;
+  background-color: white;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.region {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
+  width: 300px;
+  text-align: center;
+}
+
+.region h2 {
+  color: #b22222;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.contact-info p {
+  font-size: 16px;
+  margin: 5px 0;
+  color: #333;
+}
+
+.contact-info a {
+  color: #b22222;
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+.btn-soporte {
+  background-color: #b22222;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-soporte:hover {
+  background-color: #a51d1d;
+}

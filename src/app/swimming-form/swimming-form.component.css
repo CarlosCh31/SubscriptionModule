@@ -1,0 +1,115 @@
+/* Contenedor principal */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Sección de encabezado */
+.section {
+  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.section h2 {
+  font-size: 24px;
+  color: #333;
+  margin: 0;
+}
+
+/* Grupos de formulario */
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Estilos para select y botones */
+select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Botones */
+button {
+  background-color: #54156e;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #450d56;
+}
+
+/* Grupo de checkboxes */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+/* Alineación correcta de checkboxes y etiquetas */
+.checkbox-option {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espaciado entre checkbox y texto */
+  margin-bottom: 8px; /* Aumenta el espacio entre cada opción */
+}
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #54156e;
+  transition: box-shadow 0.3s ease;
+}
+
+input[type="checkbox"]:hover {
+  box-shadow: 0 0 5px rgba(84, 21, 110, 0.5);
+}
+
+input[type="checkbox"]:checked {
+  box-shadow: 0 0 5px rgba(84, 21, 110, 0.8);
+}
+
+.option-label {
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Botón de volver */
+.btn-secondary {
+  background-color: #54156e;
+}
+
+.btn-secondary:hover {
+  background-color: #450d56;
+}
+
+/* Botón de enviar */
+.btn-primary {
+  background-color: #54156e;
+}
+
+.btn-primary:hover {
+  background-color: #450d56;
+}

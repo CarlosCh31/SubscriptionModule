@@ -1,0 +1,44 @@
+header {
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  font-family: 'Ubuntu', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header div {
+  flex-grow: 1; /* Permite que cada div ocupe el mismo espacio */
+  text-align: center; /* Centra el contenido dentro de cada div */
+}
+
+.logo {
+  max-height: 55px;
+  max-width: 200px;
+  cursor: pointer;
+}
+
+.help-text {
+  cursor: pointer;
+  color: black; /* Ajusta el color del enlace si es necesario */
+  font-weight: 500; /* Opcional: estilo de texto */
+
+}
+
+.img, .left {
+  padding: 0.5rem;
+}
+.help {
+  display: flex;
+  justify-content: flex-end; /* Alinea todos los elementos hacia la izquierda */
+  align-items: center; /* Centra verticalmente los elementos si es necesario */
+  padding: 0.5rem;
+}
+
+
+
+

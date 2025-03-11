@@ -1,0 +1,62 @@
+<body>
+
+<div class="header-container" *ngIf="formService.currentStep === 2">
+  <h2 class="header-form">
+    Hola {{ formService.getFormData().name }},
+    {{ isVolunteer ? 'Gracias por ofrecerte como voluntario' : '¿A qué deporte te quieres inscribir?' }}
+  </h2>
+</div>
+
+<div class="container">
+  <form #volunteerForm="ngForm" (ngSubmit)="onSubmit()">
+    <div *ngIf="formService.currentStep === 1" class="section">
+      <h2> -Registro Personal</h2>
+      <div class="form-group">
+        <app-form></app-form>
+      </div>
+    </div>
+
+    <div *ngIf="isVolunteer && formService.currentStep === 2" class="section">
+      <h2>Información Adicional para Voluntarios</h2>
+
+      <!-- Mensaje de error si no se seleccionan día y hora -->
+      <div *ngIf="showValidationError" class="error-message">
+        <p>Debes seleccionar al menos un día y una hora para continuar.</p>
+      </div>
+
+      <div id='days' class="checkbox-group">
+        <label for="days">Días de Disponibilidad</label>
+        <div *ngFor="let day of availableDays">
+          <input type="checkbox" [value]="day.id" [checked]="selectedDays.includes(day.id)" (change)="onDayChange(day.id, $event)">
+          <label>{{ day.day_name }}</label>
+
+          <div *ngIf="selectedDays.includes(day.id)" class="hours-selection">
+            <label>Horas de Disponibilidad para {{ day.day_name }}</label>
+            <div *ngFor="let time of availableTimes">
+              <input type="checkbox" [value]="time.id"  [checked]="selectedTimes[day.id].includes(time.id)" (change)="onTimeChange(day.id, time.id, $event)">
+              <label>{{ time.hour }}:{{ time.minutes }}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mensaje de éxito o error -->
+      <div *ngIf="successMessage" class="success-message">
+        <p>{{ successMessage }}</p>
+      </div>
+      <div *ngIf="errorMessage" class="error-message">
+        <p>{{ errorMessage }}</p>
+      </div>
+
+      <div class="button-group">
+        <div>
+          <button class="btn-secondary" type="button" (click)="previousStep()">Anterior</button>
+        </div>
+        <div>
+          <button type="submit">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</body>

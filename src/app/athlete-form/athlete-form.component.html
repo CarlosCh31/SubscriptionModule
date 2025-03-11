@@ -1,0 +1,90 @@
+<body>
+<div class="header-container" *ngIf="formService.currentStep === 2">
+  <h2 class="header-form">Hola {{ formService.getFormData().name }}, ¿A qué deporte te quieres inscribir?</h2>
+</div>
+
+<div class="container">
+  <form #athleteForm="ngForm">
+    <!-- Step 1: Información Personal -->
+    <div *ngIf="formService.currentStep === 1" class="section">
+      <h2>Información Personal</h2>
+      <div class="form-group">
+        <app-form></app-form>
+      </div>
+    </div>
+
+    <!-- Step 2: Información del Atleta -->
+    <div *ngIf="formService.currentStep === 2" class="section">
+      <!-- Selector de deportes -->
+      <div class="form-group" *ngIf="sports">
+        <label for="sport">Deporte:</label>
+        <select #sportComboBox id="sport" name="sport" required [(ngModel)]="selectedSportId"
+                (change)="onSportChange($event)">
+          <option value="" disabled selected>Seleccione el deporte</option>
+          <option *ngFor="let sport of sports; trackBy: trackBySportId" [value]="sport.id">
+            {{ sport.name }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Tipo de Discapacidad -->
+      <div class="form-group">
+        <label for="disability_type">Tipo de discapacidad:</label>
+        <select id="disability_type" name="disability_type" [(ngModel)]="athleteData.disability_type" #disability_type="ngModel" required>
+          <option value="" disabled selected>Seleccione su tipo de discapacidad</option>
+          <option *ngFor="let type of disabilityTypes" [value]="type.description">{{ type.description }}</option>
+        </select>
+        <div *ngIf="disability_type.invalid && (disability_type.touched || athleteForm.submitted)">
+          <small class="error">El tipo de discapacidad es requerida.</small>
+        </div>
+      </div>
+
+      <!-- Lateralidad -->
+      <div class="form-group">
+        <label name="laterality">Lateralidad:</label>
+        <select id="laterality" name="laterality" [(ngModel)]="athleteData.laterality" #laterality="ngModel" required>
+          <option value="" disabled selected>Seleccione su lateralidad</option>
+          <option *ngFor="let option of lateralityOptions" [value]="option.name">{{ option.name }}</option>
+        </select>
+        <div *ngIf="laterality.invalid && (laterality.touched || athleteForm.submitted)">
+          <small class="error">La lateralidad es requerida.</small>
+        </div>
+      </div>
+
+      <!-- Subir Comprobante de Discapacidad -->
+      <div class="form-group">
+        <label for="disabilityProof">Subir comprobante de discapacidad (PDF):</label>
+        <div class="file-buttons">
+          <input type="file" id="disabilityProof" name="disabilityProof" (change)="onFileSelected($event)"
+                 accept="application/pdf" style="display: none;" #fileInput>
+          <button type="button" (click)="fileInput.click()" class="custom-file-button">Elegir archivo</button>
+          <span>
+      {{ athleteData.sportInfo.disabilityProof ? athleteData.sportInfo.disabilityProof.name : 'No se ha elegido ningún archivo' }}
+    </span>
+        </div>
+        <div *ngIf="athleteData.sportInfo.disabilityProof" class="file-buttons">
+          <button type="button" (click)="clearFile()" class="delete-button">Eliminar archivo</button>
+        </div>
+        <div *ngIf="!athleteData.sportInfo.disabilityProof && showMessage">
+          <small class="error">El comprobante de discapacidad es requerido.</small>
+        </div>
+      </div>
+
+
+      <!-- Botones -->
+      <!-- Botones -->
+      <div class="button-group">
+        <div>
+          <button class="btn-secondary" type="button" (click)="previousStep()">Anterior</button>
+        </div>
+        <div>
+          <button type="button"
+                  (click)="goToSportRegistration()">
+            Continuar
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</body>

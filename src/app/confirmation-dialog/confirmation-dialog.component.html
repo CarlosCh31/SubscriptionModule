@@ -1,0 +1,17 @@
+<div class="modal-overlay" *ngIf="showDialog"></div>
+
+<div class="modal-frame" *ngIf="showDialog">
+  <div class="modal">
+    <div class="modal-inset">
+      <div class="button close" (click)="closeModal()">✖</div>
+
+      <div class="modal-body">
+        <h3>{{ message }}</h3>
+        <div class="modal-actions">
+          <button class="modal-btn confirm" (click)="confirm(false)">Sí</button>
+          <button class="modal-btn cancel" (click)="confirm(true)">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

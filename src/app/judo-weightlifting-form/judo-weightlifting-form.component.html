@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="section">
+    <h2>Registro de Información - {{ sportName }}</h2>
+  </div>
+
+  <div class="form-group">
+    <label for="bodyWeight">Ingrese su peso corporal en kg:</label>
+    <input type="number" id="bodyWeight" name="bodyWeight" required [(ngModel)]="athleteData.bodyWeight" (ngModelChange)="onWeightChange($event)" />
+  </div>
+
+  <div *ngIf="weightError" class="error">
+    Por favor ingrese un peso válido mayor a 0 kg.
+  </div>
+
+</div>

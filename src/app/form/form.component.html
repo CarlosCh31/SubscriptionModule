@@ -1,0 +1,258 @@
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<form #registrationForm="ngForm" (ngSubmit)="collectFormData()" novalidate>
+
+  <div class="form-group" *ngIf="currentStep === 1">
+    <label name="idType">Tipo de Identificación:</label>
+    <select id="idType" name="idType" [(ngModel)]="registration.idType" #idType="ngModel" required placeholder="Seleccione su tipo de identificación">
+      <option value="física">Cédula Física</option>
+      <option value="dimex">DIMEX</option>
+      <option value="pasaporte">Pasaporte</option>
+    </select>
+    <div *ngIf="idType.invalid && (idType.touched || registrationForm.submitted)">
+      <small class="error">El tipo de identificación es requerido.</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="id">Identificación:</label>
+    <input
+      type="text"
+      id="id"
+      name="id"
+      [(ngModel)]="registration.id"
+      (ngModelChange)="applyIdentificationFormat()"
+      #id="ngModel"
+      required
+      [pattern]="getIdentificationPattern()"
+      placeholder="Escriba su identificación aquí."
+      (blur)="searchByCedula()"
+      autocomplete="off"
+    >
+    <div *ngIf="id.invalid && (id.touched || registrationForm.submitted)">
+      <small class="error" *ngIf="id.errors?.['required']">La identificación es requerida.</small>
+      <small class="error" *ngIf="id.errors?.['pattern']">Formato de identificación incorrecto.</small>
+      <small class="error">{{ validateIdentification() }}</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label name="name">Nombre:</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      [(ngModel)]="registration.name"
+      #name="ngModel"
+      placeholder="Escriba su nombre aquí."
+      required
+      [disabled]="loading"
+      (ngModelChange)="onNameChange($event)"
+    />
+
+    <div *ngIf="name.invalid && (name.touched || registrationForm.submitted)">
+      <small class="error" *ngIf="name.errors?.['required']">El nombre es requerido.</small>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading-indicator">
+    <p>Cargando nombre y apellidos, por favor espere...</p>
+  </div>
+
+  <app-confirmation-dialog
+    *ngIf="showConfirmation"
+    [message]="confirmationMessage"
+    (confirmed)="onConfirmation($event)">
+  </app-confirmation-dialog>
+
+  <div class="form-group">
+    <label name="lastname">Apellidos:</label>
+    <input
+      type="text"
+      id="lastname"
+      name="lastname"
+      [(ngModel)]="registration.lastname"
+      #lastname="ngModel"
+      placeholder="Escriba sus apellidos aquí."
+      required
+      (ngModelChange)="onLastNameChange($event)"
+    />
+
+    <div *ngIf="lastname.invalid && (lastname.touched || registrationForm.submitted)">
+      <small class="error" *ngIf="lastname.errors?.['required']">Los apellidos son requeridos.</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label name="birthdate-day">Fecha de Nacimiento:</label>
+    <div class="container-birthdate">
+
+      <span>
+        <label name="birthdate-day"> Día </label>
+        <select id="birthdate-day" name="birthdate-day" [(ngModel)]="selectedDay" (ngModelChange)="onDayChange($event)" #birthdateDay="ngModel" required>
+          <option value="" disabled>Día</option>
+          <option *ngFor="let day of days" [value]="day">{{ day }}</option>
+        </select>
+        <div *ngIf="birthdateDay.invalid && (birthdateDay.touched || registrationForm.submitted)">
+          <small class="error">El día es requerido.</small>
+        </div>
+      </span>
+
+      <span>
+        <label name="birthdate-month"> Mes </label>
+        <select id="birthdate-month" name="birthdate-month" [(ngModel)]="selectedMonth" (ngModelChange)="onMonthChange($event)" #birthdateMonth="ngModel" required>
+          <option value="" disabled>Mes</option>
+          <option *ngFor="let month of months" [value]="month.value">{{ month.name }}</option>
+        </select>
+        <div *ngIf="birthdateMonth.invalid && (birthdateMonth.touched || registrationForm.submitted)">
+          <small class="error">El mes es requerido.</small>
+        </div>
+      </span>
+
+      <span>
+        <label name="birthdate-year"> Año </label>
+        <select id="birthdate-year" name="birthdate-year" [(ngModel)]="selectedYear" (ngModelChange)="onYearChange($event)" #birthdateYear="ngModel" required>
+          <option value="" disabled>Año</option>
+          <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+        </select>
+        <div *ngIf="birthdateYear.invalid && (birthdateYear.touched || registrationForm.submitted)">
+          <small class="error">El año es requerido.</small>
+        </div>
+      </span>
+
+      <div *ngIf="birthdateError">
+        <small class="error">{{ birthdateError }}</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label name="email">Email:</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      [(ngModel)]="registration.email"
+      #email="ngModel"
+      placeholder="Escriba su correo electronico aqui"
+      required
+      pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+      autocomplete="email"
+      (ngModelChange)="onEmailChange($event)"
+    >
+    <div *ngIf="email.invalid && (email.touched || registrationForm.submitted)">
+      <small class="error" *ngIf="email.errors?.['required']">El email es requerido.</small>
+      <small class="error" *ngIf="email.errors?.['pattern']">Formato de email incorrecto.</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label name="phone_number">Número de teléfono:</label>
+    <input
+      type="text"
+      id="phone_number"
+      name="phone_number"
+      [(ngModel)]="registration.phone_number"
+      (input)="applyPhoneNumberMask()"
+      #phone_number="ngModel"
+      required
+      placeholder="Digite su numero de telefono (+506 XXXX XXXX)"
+      autocomplete="tel"
+    >
+    <div *ngIf="phone_number.invalid && (phone_number.touched || registrationForm.submitted)">
+      <small class="error" *ngIf="phone_number.errors?.['required']">El número de teléfono es requerido.</small>
+      <small class="error" *ngIf="phone_number.errors?.['pattern']">Número de teléfono inválido. Debe seguir el formato 8XXX-XXXX.</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label name="citizenship">Nacionalidad:</label>
+    <select id="citizenship" name="citizenship" [(ngModel)]="registration.citizenship" (change)="onCitizenshipChange()" #citizenship="ngModel" required>
+      <option value="nacional">Costarricense</option>
+      <option value="extranjero">Extranjero</option>
+    </select>
+    <div *ngIf="citizenship.invalid && (citizenship.touched || registrationForm.submitted)">
+      <small class="error">La nacionalidad es requerida.</small>
+    </div>
+  </div>
+
+  <div *ngIf="registration.citizenship === 'Costarricense'">
+    <div class="form-group">
+      <label name="province">Provincia:</label>
+      <select id="province" name="province" [(ngModel)]="registration.province_id" (ngModelChange)="onProvinceChange($event)" #province="ngModel" required placeholder="Seleccione una provincia">
+        <option value="" disabled selected>Seleccione una provincia</option>
+        <option *ngFor="let province of provinces" [ngValue]="province">{{ province.name }}</option>
+      </select>
+      <div *ngIf="province.invalid && (province.touched || registrationForm.submitted)">
+        <small class="error">La provincia es requerida.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label name="canton">Cantón:</label>
+      <select id="canton" name="canton" [(ngModel)]="registration.canton_id" #canton="ngModel" required [disabled]="!registration.province_id || cantons.length === 0" placeholder="Seleccione un canton">
+        <option value="" disabled selected>Seleccione un cantón</option>
+        <option *ngFor="let canton of cantons" [ngValue]="canton">{{ canton.name }}</option>
+      </select>
+      <div *ngIf="canton.invalid && (canton.touched || registrationForm.submitted)">
+        <small class="error">El cantón es requerido.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label name="region">Región:</label>
+      <select id="region" name="region" [(ngModel)]="registration.region_id" #region="ngModel" required placeholder="Seleccione una region">
+        <option *ngFor="let region of regions" [ngValue]="region">{{ region.name }}</option>
+      </select>
+      <div *ngIf="region.invalid && (region.touched || registrationForm.submitted)">
+        <small class="error">La región es requerida.</small>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="registration.citizenship === 'Extranjero'">
+    <div class="form-group">
+      <label name="worldRegion">Región Global:</label>
+      <select
+              id="worldRegion"
+              name="worldRegion"
+              [(ngModel)]="registration.worldRegion"
+              #worldRegion="ngModel"
+              required
+              (ngModelChange)="registration.worldRegion !== null && onWorldRegionChange(registration.worldRegion)"
+      >
+        <option value="" disabled selected>Seleccione una región</option>
+        <option *ngFor="let region of globalRegions" [value]="region.id">{{ region.name }}</option>
+      </select>
+      <div *ngIf="worldRegion.invalid && (worldRegion.touched || registrationForm.submitted)">
+        <small class="error">La región es requerida.</small>
+      </div>
+    </div>
+
+    <div class="form-group" *ngIf="registration.worldRegion">
+      <label name="country">País:</label>
+      <select id="country" name="country" [(ngModel)]="registration.country" #country="ngModel" required>
+        <option value="" disabled selected>Seleccione un país</option>
+        <option *ngFor="let country of filteredCountries" [value]="country.id">{{ country.name }}</option>
+      </select>
+      <div *ngIf="country.invalid && (country.touched || registrationForm.submitted)">
+        <small class="error">El país es requerido.</small>
+      </div>
+    </div>
+
+  </div>
+
+  <app-confirmation-dialog
+    *ngIf="showFormValidationDialog"
+    [message]="confirmationMessageForm"
+    (confirmed)="onFormValidationConfirmation($event)">
+  </app-confirmation-dialog>
+
+  <div id="button-group-regreso">
+    <button type="button" (click)="navigateToHome()">Página Principal</button>
+    <button type="submit">Siguiente</button>
+  </div>
+
+</form>

@@ -1,0 +1,65 @@
+<body>
+<div class="header-container">
+  <h2 class="header-form">
+    Hola {{ athleteName }}, te estás inscribiendo al deporte {{ sportName }}
+  </h2>
+</div>
+
+<div class="container">
+  <div *ngIf="sportName" class="form-section">
+
+    <!-- Formulario de cada deporte -->
+    <div class="form-group">
+      <app-volleyball-form *ngIf="['Baloncesto', 'Balonmano', 'Bochas', 'Fútbol', 'Softball', 'Voleibol Playa', 'Tenis de Mesa', 'Tenis de Campo', 'Voleibol'].includes(sportName)"
+                           [sportName]="sportName"
+                           [athleteData]="athleteData"></app-volleyball-form>
+    </div>
+
+    <div class="form-group">
+      <app-judo-weightlifting-form *ngIf="['Levantamiento de Pesas', 'Judo'].includes(sportName)"
+                                   [sportName]="sportName"
+                                   [athleteData]="athleteData"></app-judo-weightlifting-form>
+    </div>
+
+    <div class="form-group">
+      <app-athletism-form *ngIf="sportName === 'Atletismo'"
+                          [sportName]="sportName"
+                          [athleteData]="athleteData"></app-athletism-form>
+    </div>
+
+    <div class="form-group">
+      <app-cycling-form *ngIf="sportName === 'Ciclismo'"
+                        [sportName]="sportName"
+                        [athleteData]="athleteData"></app-cycling-form>
+    </div>
+
+    <div class="form-group">
+      <app-swimming-form *ngIf="sportName === 'Natación'"
+                         [sportName]="sportName"
+                         [athleteData]="athleteData"></app-swimming-form>
+    </div>
+
+    <div class="form-group">
+      <app-equestrian-form *ngIf="sportName === 'Equitación'"
+                           [sportName]="sportName"
+                           [athleteData]="athleteData"></app-equestrian-form>
+    </div>
+
+    <div class="form-group">
+      <app-rhythmicgymnastics-form *ngIf="sportName === 'Gimnasia Rítmica'"
+                                   [sportName]="sportName"
+                                   [athleteData]="athleteData"></app-rhythmicgymnastics-form>
+    </div>
+
+
+  </div>
+
+  <!-- Sección de botones -->
+  <div class="button-group">
+    <button class="btn-secondary" type="button" (click)="goBack()">Volver</button>
+    <button class="btn-primary" type="button" (click)="submitForm()" [disabled]="isSubmitting">
+      {{ isSubmitting ? 'Enviando...' : 'Enviar' }}
+    </button>
+  </div>
+</div>
+</body>

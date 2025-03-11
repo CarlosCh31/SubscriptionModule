@@ -1,0 +1,42 @@
+.footer {
+  background-color: #333333;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  font-family: Ubuntu, sans-serif;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-logo h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.footer-social {
+  margin: 15px 0;
+  display: flex;
+  gap: 15px;
+}
+
+.footer-social a img {
+  width: 30px;
+  height: 30px;
+  filter: brightness(0) invert(1); /* Para que el icono se adapte a un fondo oscuro */
+  transition: transform 0.3s;
+}
+
+.footer-social a:hover img {
+  transform: scale(1.1);
+}
+
+.footer-info {
+  font-size: 14px;
+  color: #bbb;
+}

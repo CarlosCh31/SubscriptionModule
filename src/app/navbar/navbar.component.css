@@ -1,0 +1,127 @@
+.hamburger {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 30px;
+  height: 30px;
+  z-index: 1002;
+  cursor: pointer;
+}
+
+.hamburger ._layer {
+  background: #ff0808;
+  margin-bottom: 5px;
+  border-radius: 2px;
+  width: 28px;
+  height: 4px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.is-active .-top {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.hamburger.is-active .-mid {
+  opacity: 0;
+}
+
+.hamburger.is-active .-bottom {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+.menuppal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 0, 0, 0.95), rgba(221, 58, 58, 0.73), rgba(223, 109, 109, 0.75));
+
+  transform: translateX(-100%);
+  transition: transform 0.35s ease-in-out;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.menuppal.is_active {
+  transform: translateX(0);
+}
+
+.logo {
+  max-width: 200px;
+  margin: 40px 0;
+}
+.banner {
+  margin: auto;
+  max-width: 20%;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.menuppal ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.menuppal ul li {
+  margin: 20px 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  position: relative;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.menuppal ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.menuppal ul li a:hover {
+  color: #ffcccc;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.submenu {
+  display: none;
+  margin-top: 10px;
+}
+
+.is_submenu_active {
+  display: block;
+}
+
+.submenu li {
+  margin: 10px 0;
+  font-size: 1.2rem;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.submenu li a {
+  color: white;
+  padding: 5px 15px;
+  display: block;
+  background-color: rgba(255, 255, 255, 0.2);
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.submenu li a:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  font-family: 'Ubuntu', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: 'Ubuntu', sans-serif;
+  background-color: #f4f4f4;
+}
+
+

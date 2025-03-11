@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="section">
+    <h2>Registro de Información - {{ sportName }}</h2>
+  </div>
+
+  <div class="form-group">
+    <label for="selectedLevel">Nivel en el que va a participar:</label>
+    <select id="selectedLevel" name="selectedLevel" required [(ngModel)]="selectedLevel" (change)="onLevelChange($event)">
+      <option value="" disabled selected>Seleccione una opción</option>
+      <option *ngFor="let level of levelOptions" [value]="level">{{ level }}</option>
+    </select>
+  </div>
+</div>

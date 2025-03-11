@@ -1,0 +1,55 @@
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<div class="hamburger" (click)="toggleMenu()">
+  <div class="_layer -top"></div>
+  <div class="_layer -mid"></div>
+  <div class="_layer -bottom"></div>
+</div>
+
+<!-- Navigation Menu -->
+<nav [class.is_active]="isMenuActive" class="menuppal">
+  <div class="menu-logo">
+
+  </div>
+
+  <ul>
+    <li>
+      <img src="assets/logo.jpg" alt="Logo" class="logo" (click)="navigateTo('')">
+    </li>
+    <li>
+      <a (click)="navigateTo('')">Inicio </a>
+    </li>
+    <li>
+      <a (click)="toggleSubmenu('registros')">Regístrate ▼</a>
+      <ul [class.is_submenu_active]="activeSubmenu === 'registros'" class="submenu">
+        <!-- Corrected navigation for volunteer-form -->
+        <li><a (click)="navigateTo('volunteer-form')">Voluntario</a></li>
+        <li><a (click)="navigateTo('athlete-form')">Atleta</a></li>
+      </ul>
+    </li>
+    <li>
+      <a (click)="toggleSubmenu('programas')">Programas ▼</a>
+      <ul [class.is_submenu_active]="activeSubmenu === 'programas'" class="submenu">
+        <li><a (click)="navigateTo('volunteer-form')">Familia</a></li>
+        <li><a (click)="navigateTo('volunteer-form')">Salud</a></li>
+        <li><a (click)="navigateTo('volunteer-form')">Educación</a></li>
+      </ul>
+    </li>
+    <li>
+      <a (click)="toggleSubmenu('calendario')">Calendario ▼</a>
+      <ul [class.is_submenu_active]="activeSubmenu === 'calendario'" class="submenu">
+        <li><a routerLink="/evento1">Evento 1</a></li>
+        <li><a routerLink="/evento2">Evento 2</a></li>
+      </ul>
+    </li>
+    <li>
+      <a (click)="toggleSubmenu('soporte')">Soporte ▼</a>
+      <ul [class.is_submenu_active]="activeSubmenu === 'soporte'" class="submenu">
+        <li><a (click)="navigateTo('soporte')">Contactos</a></li>
+
+      </ul>
+    </li>
+  </ul>
+</nav>
