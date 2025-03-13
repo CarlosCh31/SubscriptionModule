@@ -18,6 +18,7 @@ describe('AthleteFormComponent', () => {
   });
 
   it('should create', () => {
+    // @ts-ignore
     expect(component).toBeTruthy();
   });
 });
