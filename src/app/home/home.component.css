@@ -45,6 +45,8 @@ section {
   border-radius: 100px 100px 0 0;
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+
 }
 
 .calendario h2 {
@@ -52,6 +54,14 @@ section {
   color: #333;
   text-align: center;
   margin-bottom: 15px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  display: inline-block;
+  text-align: center;
+}
+
+.calendario h2:hover {
+  color: #004aad;
 }
 
 .calendario p {

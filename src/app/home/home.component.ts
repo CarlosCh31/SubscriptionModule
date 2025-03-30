@@ -27,6 +27,7 @@ export class HomeComponent {
     const today = new Date();
     this.currentMonth = today.getMonth();
     this.currentYear = today.getFullYear();
+    this.generateCalendar();
   }
 
   successMessage: string | null = null;

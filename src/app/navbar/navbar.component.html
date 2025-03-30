@@ -38,11 +38,7 @@
       </ul>
     </li>
     <li>
-      <a (click)="toggleSubmenu('calendario')">Calendario ▼</a>
-      <ul [class.is_submenu_active]="activeSubmenu === 'calendario'" class="submenu">
-        <li><a routerLink="/evento1">Evento 1</a></li>
-        <li><a routerLink="/evento2">Evento 2</a></li>
-      </ul>
+      <a (click)="navigateTo('calendario')">Calendario</a>
     </li>
     <li>
       <a (click)="toggleSubmenu('soporte')">Soporte ▼</a>
