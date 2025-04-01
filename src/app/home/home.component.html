@@ -28,23 +28,10 @@
 
 <!-- Calendario Section -->
 <section class="calendario">
-  <h2 (click)="navigateTo('calendario')">Calendario</h2>
+  <h2>Calendario</h2>
   <section class="calendar-container">
-    <div class="calendar-header">
-      <button (click)="prevMonth()" class="calendar-nav">&#10094;</button>
-      <div class="calendar-title">{{ monthName }} {{ currentYear }}</div>
-      <button (click)="nextMonth()" class="calendar-nav">&#10095;</button>
-    </div>
-    <div class="calendar-body">
-      <div class="calendar-days">
-        <div class="day" *ngFor="let day of daysOfWeek">{{ day }}</div>
-      </div>
-      <div class="calendar-grid">
-        <div class="calendar-date" *ngFor="let day of calendarDays" [class.today]="day.isToday" [class.other-month]="!day.isCurrentMonth" (click)="selectDate(day.date)">
-          {{ day.date.getDate() }}
-        </div>
-      </div>
-    </div>
+    <!-- ✅ Aquí reemplazamos el calendario viejo por el nuevo componente -->
+    <app-calendario></app-calendario>
   </section>
 </section>
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import {NgForOf, NgIf} from "@angular/common";
+import { CalendarioComponent } from '../calendario/calendario.component'
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,7 @@ import {NgForOf, NgIf} from "@angular/common";
   styleUrls: ['./home.component.css'],
   standalone: true,
   imports: [
+    CalendarioComponent,
     NgForOf,
     NgIf
   ],
