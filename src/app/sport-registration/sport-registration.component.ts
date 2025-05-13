@@ -43,7 +43,6 @@ export class SportRegistrationComponent implements OnInit {
 
     // 🔹 Cargar datos guardados al iniciar
     const savedData = this.formService.getAthleteData();
-    console.log("SUICIDIO: ", savedData);
     this.athleteData = savedData;
     //this.athleteData = savedData ? savedData : { sportInfo: {} };
   }

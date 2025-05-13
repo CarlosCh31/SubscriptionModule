@@ -10,7 +10,6 @@ export class AthleteService {
 
   constructor(private http: HttpClient) {}
 
-
   createAthlete(athleteData: any, options: any = {}): Observable<any> {
     return this.http.post(this.apiUrl, athleteData, {
       ...options,

@@ -80,11 +80,6 @@ export class AthleteFormComponent implements OnInit {
     }
   }
 
-
-
-
-
-
   loadDisabilityTypes() {
     this.disabilityTypeService.getDisabilityTypes().subscribe(
       data => {
@@ -180,8 +175,6 @@ export class AthleteFormComponent implements OnInit {
 
   goToSportRegistration() {
     this.submitted = true;
- console.log( "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + this.selectedSport, this.athleteData.disability_type, this.athleteData.laterality);
-
     if (!this.selectedSport || !this.athleteData.disability_type ||
       !this.athleteData.laterality || !this.athleteData.disabilityProof) {
       console.log("Faltan campos por completar.");
@@ -189,12 +182,13 @@ export class AthleteFormComponent implements OnInit {
     }
 
     // Guardar datos antes de avanzar
-    this.formService.setAthleteData({
+    const currentData = this.formService.getFormData();
+
+    this.formService.setFormData({
+      ...currentData,
       laterality: this.athleteData.laterality,
       disability_type: this.athleteData.disability_type,
-      sportInfo: {
-        sport: this.selectedSport
-      }
+      sport: this.selectedSport
     });
 
     this.router.navigate(['/registro-deporte', this.selectedSport.name]);

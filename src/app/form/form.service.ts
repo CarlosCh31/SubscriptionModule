@@ -17,13 +17,11 @@ export class FormService {
 
   // Método para establecer datos en formData
   setFormData(data: any) {
-    console.log('Guardando datos en formData:', data);
     this.formData = { ...this.formData, ...data };
   }
 
   // Método para obtener datos de formData
   getFormData() {
-    console.log('Obteniendo formData:', this.formData);
     return this.formData;
   }
 
@@ -45,14 +43,12 @@ export class FormService {
       ...this.athleteData,
       sportInfo: { ...this.athleteData.sportInfo, ...data.sportInfo }
     };
-this.athleteData.
     // Guardar en formData también
     this.setFormData({ athleteData: this.athleteData });
   }
 
   getAthleteData() {
-    console.log('Obteniendo athleteData:', this.athleteData);
-    return this.athleteData || { sportInfo: {} };
+    return this.athleteData;
   }
 
   // Métodos para gestionar datos de voluntario

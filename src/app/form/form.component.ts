@@ -657,9 +657,12 @@ export class FormComponent implements OnInit {
 
 
   submitForm() {
+    const athleteData = this.formService.getAthleteData();
     const personalData = {
         id: this.registration.id,
         name: this.registration.name,
+        laterality: athleteData.laterality,
+        disability: athleteData.disability_type,
         lastname: this.registration.lastname,
         birthdate: this.registration.birthdate,
         email: this.registration.email,
