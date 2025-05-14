@@ -129,22 +129,22 @@
   </div>
 
   <div class="form-group">
-    <label name="email">Email:</label>
+    <label name="email">Correo electrónico:</label>
     <input
       type="email"
       id="email"
       name="email"
       [(ngModel)]="registration.email"
       #email="ngModel"
-      placeholder="Escriba su correo electronico aqui"
+      placeholder="Escriba su correo electrónico aquí"
       required
       pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
       autocomplete="email"
       (ngModelChange)="onEmailChange($event)"
     >
     <div *ngIf="email.invalid && (email.touched || registrationForm.submitted)">
-      <small class="error" *ngIf="email.errors?.['required']">El email es requerido.</small>
-      <small class="error" *ngIf="email.errors?.['pattern']">Formato de email incorrecto.</small>
+      <small class="error" *ngIf="email.errors?.['required']">El correo electrónico es requerido.</small>
+      <small class="error" *ngIf="email.errors?.['pattern']">Formato del correo electrónico es incorrecto.</small>
     </div>
   </div>
 
@@ -158,20 +158,20 @@
       (input)="applyPhoneNumberMask()"
       #phone_number="ngModel"
       required
-      placeholder="Digite su numero de telefono (+506 XXXX XXXX)"
+      placeholder="Digite su número de teléfono. Ejemplo: 88888888"
       autocomplete="tel"
     >
     <div *ngIf="phone_number.invalid && (phone_number.touched || registrationForm.submitted)">
       <small class="error" *ngIf="phone_number.errors?.['required']">El número de teléfono es requerido.</small>
-      <small class="error" *ngIf="phone_number.errors?.['pattern']">Número de teléfono inválido. Debe seguir el formato 8XXX-XXXX.</small>
+      <small class="error" *ngIf="phone_number.errors?.['pattern']">Número de teléfono inválido. Debe seguir el formato 88888888.</small>
     </div>
   </div>
 
   <div class="form-group">
     <label name="citizenship">Nacionalidad:</label>
     <select id="citizenship" name="citizenship" [(ngModel)]="registration.citizenship" (change)="onCitizenshipChange()" #citizenship="ngModel" required>
-      <option value="nacional">Costarricense</option>
-      <option value="extranjero">Extranjero</option>
+      <option value="Costarricense">Costarricense</option>
+      <option value="Extranjero">Extranjero</option>
     </select>
     <div *ngIf="citizenship.invalid && (citizenship.touched || registrationForm.submitted)">
       <small class="error">La nacionalidad es requerida.</small>
@@ -202,12 +202,12 @@
     </div>
 
     <div class="form-group">
-      <label name="region">Región:</label>
+      <label name="region">Región del MEP a la que pertenece:</label>
       <select id="region" name="region" [(ngModel)]="registration.region_id" #region="ngModel" required placeholder="Seleccione una region">
         <option *ngFor="let region of regions" [ngValue]="region">{{ region.name }}</option>
       </select>
       <div *ngIf="region.invalid && (region.touched || registrationForm.submitted)">
-        <small class="error">La región es requerida.</small>
+        <small class="error">La región del MEP es requerida.</small>
       </div>
     </div>
   </div>
@@ -223,11 +223,11 @@
               required
               (ngModelChange)="registration.worldRegion !== null && onWorldRegionChange(registration.worldRegion)"
       >
-        <option value="" disabled selected>Seleccione una región</option>
+        <option value="" disabled selected>Seleccione una región global</option>
         <option *ngFor="let region of globalRegions" [value]="region.id">{{ region.name }}</option>
       </select>
       <div *ngIf="worldRegion.invalid && (worldRegion.touched || registrationForm.submitted)">
-        <small class="error">La región es requerida.</small>
+        <small class="error">La región global es requerida.</small>
       </div>
     </div>
 

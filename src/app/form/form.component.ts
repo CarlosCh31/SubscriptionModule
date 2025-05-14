@@ -221,9 +221,10 @@ export class FormComponent implements OnInit {
       this.birthdateError = null;
     }
   }
-
   onCitizenshipChange() {
-    this.registration.citizenship = this.registration.citizenship === 'nacional' ? 'Costarricense' : undefined;
+    if (this.registration.citizenship === 'nacional') {
+      this.registration.citizenship = 'Costarricense';
+    }
     this.formDataService.setFormData({ citizenship: this.registration.citizenship });
   }
 

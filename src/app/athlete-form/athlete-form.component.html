@@ -41,13 +41,13 @@
 
       <!-- Lateralidad -->
       <div class="form-group">
-        <label name="laterality">Lateralidad:</label>
+        <label name="laterality">Mano dominate:</label>
         <select id="laterality" name="laterality" [(ngModel)]="athleteData.laterality" #laterality="ngModel" required>
-          <option value="" disabled selected>Seleccione su lateralidad</option>
+          <option value="" disabled selected>Seleccione su mano dominate</option>
           <option *ngFor="let option of lateralityOptions" [value]="option.name">{{ option.name }}</option>
         </select>
         <div *ngIf="laterality.invalid && (laterality.touched || athleteForm.submitted)">
-          <small class="error">La lateralidad es requerida.</small>
+          <small class="error">La mano dominate es requerida.</small>
         </div>
       </div>
 
@@ -59,7 +59,7 @@
                  accept="application/pdf" style="display: none;" #fileInput>
           <button type="button" (click)="fileInput.click()" class="custom-file-button">Elegir archivo</button>
           <span>
-      {{ athleteData.sportInfo.disabilityProof ? athleteData.sportInfo.disabilityProof.name : 'No se ha elegido ningún archivo' }}
+      {{ athleteData.disabilityProof ? athleteData.disabilityProof.name : 'No se ha elegido ningún archivo' }}
     </span>
         </div>
         <div *ngIf="athleteData.sportInfo.disabilityProof" class="file-buttons">
