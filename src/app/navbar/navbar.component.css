@@ -35,7 +35,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(255, 0, 0, 0.95), rgba(221, 58, 58, 0.73), rgba(223, 109, 109, 0.75));
+  background: #efefef; /* ← aquí el cambio */
 
   transform: translateX(-100%);
   transition: transform 0.35s ease-in-out;
@@ -45,6 +45,7 @@
   align-items: center;
   font-family: 'Ubuntu', sans-serif;
 }
+
 
 .menuppal.is_active {
   transform: translateX(0);
@@ -72,13 +73,13 @@
   margin: 20px 0;
   font-size: 1.5rem;
   font-weight: bold;
-  color: white;
+  color: #ff1313;
   position: relative;
   font-family: 'Ubuntu', sans-serif;
 }
 
 .menuppal ul li a {
-  color: white;
+  color: #e50000;
   text-decoration: none;
   display: block;
   padding: 10px;
@@ -86,7 +87,7 @@
 }
 
 .menuppal ul li a:hover {
-  color: #ffcccc;
+  color: #ce1919;
   font-family: 'Ubuntu', sans-serif;
 }
 

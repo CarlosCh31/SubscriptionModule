@@ -8,7 +8,7 @@ html, body {
 
 .container {
   max-width: 800px;
-  margin: 20px auto; 
+  margin: 20px auto;
   padding: 20px;
   background-color: #fff;
   border-radius: 10px;
@@ -36,7 +36,7 @@ header h1 {
   vertical-align: middle;
   font-size: 24px;
   font-weight: bold;
-  color: #2e8b57; 
+  color: #2e8b57;
 }
 
 h2 {
@@ -70,11 +70,11 @@ input, select {
 
 input:focus, select:focus {
   outline: none;
-  box-shadow: 0 4px 8px rgba(0, 128, 0, 0.2); 
+  box-shadow: 0 4px 8px rgba(0, 128, 0, 0.2);
 }
 
 button {
-  background-color: #2e8b57; 
+  background-color: #2e8b57;
   color: white;
   border: none;
   padding: 12px 20px;
@@ -87,19 +87,19 @@ button {
 }
 
 button:hover {
-  background-color: #3cb371; 
+  background-color: #3cb371;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
 }
 
 button:active {
-  background-color: #2e8b57; 
+  background-color: #2e8b57;
   transform: translateY(0);
 }
 
 button:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.3); 
+  box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.3);
 }
 
 button:disabled {
@@ -125,7 +125,7 @@ button:disabled {
 
 .button-group {
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   margin-top: 20px;
 }
 
@@ -140,19 +140,19 @@ button:disabled {
 }
 
 .submit-button {
-  background-color: #2e8b57; 
+  background-color: #2e8b57;
   color: white;
   border: none;
 }
 
 .submit-button:hover {
-  background-color: #3cb371; 
+  background-color: #3cb371;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .button-group {
-    flex-direction: column; 
+    flex-direction: column;
     align-items: stretch;
   }
   .previous-button, .submit-button {
@@ -167,7 +167,7 @@ button:disabled {
 }
 
 .header-container {
-  background: linear-gradient(135deg, #2e8b57, #a0eec0); 
+  background: linear-gradient(135deg, #2e8b57, #a0eec0);
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
@@ -267,16 +267,16 @@ input[type="file"]::file-selector-button:active {
   width: 20px;
   height: 20px;
   cursor: pointer;
-  accent-color: #2e8b57; 
+  accent-color: #2e8b57;
   transition: box-shadow 0.3s ease;
 }
 
 .checkbox-group input[type="checkbox"]:hover {
-  box-shadow: 0 0 5px rgba(46, 139, 87, 0.5); 
+  box-shadow: 0 0 5px rgba(46, 139, 87, 0.5);
 }
 
 .checkbox-group input[type="checkbox"]:checked {
-  box-shadow: 0 0 5px rgba(46, 139, 87, 0.8); 
+  box-shadow: 0 0 5px rgba(46, 139, 87, 0.8);
 }
 
 .hours-selection {
@@ -288,21 +288,21 @@ input[type="file"]::file-selector-button:active {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
 }
 
 .hours-selection label {
   font-size: 16px;
   font-weight: bold;
-  text-align: center; 
+  text-align: center;
   margin-bottom: 10px;
 }
 
 .hours-selection .hour-checkboxes {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); 
+  grid-template-columns: repeat(5, 1fr);
   gap: 10px;
-  justify-items: center; 
+  justify-items: center;
 }
 
 .hours-selection .hour-checkboxes label {
@@ -328,3 +328,79 @@ input[type="file"]::file-selector-button:active {
 .hours-selection .hour-checkboxes input[type="checkbox"]:checked {
   box-shadow: 0 0 5px rgba(46, 139, 87, 0.8);
 }
+.alarm-style-selector {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background-color: #fefefe;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.alarm-style-selector label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+.alarm-style-selector input[type="time"] {
+  width: 150px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  background-color: #f9f9f9;
+}
+
+.day-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.day-buttons button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-weight: bold;
+  border: none;
+  background-color: #e0e0e0;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.day-buttons button:hover {
+  background-color: #d0d0d0;
+}
+
+.day-buttons button.selected {
+  background-color: #2e8b57;
+  color: white;
+  box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.3);
+}
+
+.alarm-style-selector .summary {
+  margin-top: 20px;
+  background-color: #f3f3f3;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px dashed #ccc;
+}
+
+.alarm-style-selector .summary ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.alarm-style-selector .summary li {
+  margin-bottom: 6px;
+  font-size: 15px;
+  color: #444;
+}
+

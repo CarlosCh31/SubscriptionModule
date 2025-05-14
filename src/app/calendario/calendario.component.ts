@@ -19,6 +19,7 @@ export class CalendarioComponent implements OnInit {
     locale: esLocale,
     plugins: [dayGridPlugin],
     events: [],
+    eventClick: this.handleEventClick.bind(this),
     eventDidMount: (info) => {
       const encargado = (info.event.extendedProps as any).encargado;
       const hora = (info.event.extendedProps as any).hora;
@@ -45,4 +46,13 @@ export class CalendarioComponent implements OnInit {
       this.calendarOptions.events = eventos;
     });
   }
+
+  handleEventClick(arg: any) {
+    const event = arg.event;
+    const encargado = event.extendedProps.encargado;
+    const hora = event.extendedProps.hora;
+
+    alert(`Actividad: ${event.title}\nEncargado: ${encargado ?? 'N/A'}\nHora: ${hora ?? 'N/A'}`);
+  }
+
 }

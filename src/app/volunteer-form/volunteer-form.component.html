@@ -1,5 +1,4 @@
 <body>
-
 <div class="header-container" *ngIf="formService.currentStep === 2">
   <h2 class="header-form">
     Hola {{ formService.getFormData().name }},
@@ -24,19 +23,34 @@
         <p>Debes seleccionar al menos un día y una hora para continuar.</p>
       </div>
 
-      <div id='days' class="checkbox-group">
-        <label for="days">Días de Disponibilidad</label>
-        <div *ngFor="let day of availableDays">
-          <input type="checkbox" [value]="day.id" [checked]="selectedDays.includes(day.id)" (change)="onDayChange(day.id, $event)">
-          <label>{{ day.day_name }}</label>
+      <!-- Selector estilo alarma -->
+      <div class="alarm-style-selector">
+        <label for="hour">Selecciona una hora:</label>
+        <input type="time" id="hour" [(ngModel)]="selectedHour" name="selectedHour" />
 
-          <div *ngIf="selectedDays.includes(day.id)" class="hours-selection">
-            <label>Horas de Disponibilidad para {{ day.day_name }}</label>
-            <div *ngFor="let time of availableTimes">
-              <input type="checkbox" [value]="time.id"  [checked]="selectedTimes[day.id].includes(time.id)" (change)="onTimeChange(day.id, time.id, $event)">
-              <label>{{ time.hour }}:{{ time.minutes }}</label>
-            </div>
-          </div>
+        <label>Días:</label>
+        <div class="day-buttons">
+          <button
+            type="button"
+            *ngFor="let day of availableDays"
+            (click)="toggleAlarmDay(day.id)"
+            [class.selected]="selectedAlarmDays.includes(day.id)">
+            {{ day.day_name.charAt(0) }}
+          </button>
+        </div>
+
+        <button type="button" class="btn-secondary" (click)="addAlarmAvailability()"
+                [disabled]="!selectedHour || selectedAlarmDays.length === 0">
+          Agregar disponibilidad
+        </button>
+
+        <div class="summary" *ngIf="alarmAvailabilities.length > 0">
+          <h4>Disponibilidades agregadas:</h4>
+          <ul>
+            <li *ngFor="let entry of alarmAvailabilities">
+              {{ entry.hour }} - {{ formatDays(entry.days) }}
+            </li>
+          </ul>
         </div>
       </div>
 
